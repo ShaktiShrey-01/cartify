@@ -109,7 +109,7 @@ const ProductDetail = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                className="max-h-full max-w-full object-contain lg:-mt-6"
+                className="max-h-full max-w-full object-contain lg:mt-20"
                 loading="lazy"
                 decoding="async"
               />
