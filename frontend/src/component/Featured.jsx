@@ -31,11 +31,11 @@ const Featured = () => {
 
   return (
     <section className="w-full px-6 md:px-10 pt-2 md:pt-3 pb-2 md:pb-3">
-      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm text-center -mt-8 md:-mt-10 mb-0 md:mb-0 px-2">
+      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm text-left md:text-center -mt-12 md:-mt-10 mb-2 md:mb-0 -ml-1">
         Featured
       </h2>
 
-      <div className="overflow-x-auto overflow-y-hidden pb-6 md:pb-8 scrollbar-hide max-w-[90rem] mx-auto">
+      <div className="overflow-x-auto overflow-y-hidden pb-6 md:pb-8 scrollbar-hide max-w-[90rem] mx-auto mt-8 md:mt-10">
         {loading ? (
           <Loader type="card" count={5} />
         ) : error ? (
