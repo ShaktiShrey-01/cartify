@@ -1,4 +1,5 @@
 import './categories.css';
+import ImageWithFallback from './ImageWithFallback';
 import { Link } from 'react-router-dom';
 const electronicsImage = new URL('../assets/e.png', import.meta.url).href;
 const groceryImage = new URL('../assets/g.png', import.meta.url).href;
@@ -20,10 +21,11 @@ const Categories = () => {
             <Link key={category.id} to={category.path} className="shrink-0 group">
               <div className="category-card circle-border-fill relative w-44 h-44 md:w-72 md:h-72 rounded-full overflow-hidden shadow-lg hover:shadow-2xl float-soft transform transition-transform duration-[700ms] ease-out group-hover:scale-[1.08] cursor-pointer">
                 {category.image && (
-                  <img
+                  <ImageWithFallback
                     src={category.image}
                     alt={category.name}
                     className="w-full h-full object-cover transition-transform duration-[700ms] ease-out"
+                    loading="eager"
                   />
                 )}
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-[700ms] ease-out"></div>
