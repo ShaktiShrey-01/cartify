@@ -1,9 +1,10 @@
 [build]
   base = "frontend"
-  command = "npm install && npm run build"
+    command = "yarn install --frozen-lockfile && yarn build"
   publish = "frontend/dist"
 
 [build.environment]
   NODE_VERSION = "22.12.0"
   NPM_CONFIG_OPTIONAL = "true"
   NPM_CONFIG_IGNORE_OPTIONAL = "false"
+    NETLIFY_USE_YARN = "true"
