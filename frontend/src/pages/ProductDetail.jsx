@@ -105,11 +105,13 @@ const ProductDetail = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-lg">
             {/* Product Image */}
-            <div className="flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden h-87.5 md:h-125 lg:h-150">
+            <div className="flex items-center justify-center bg-gray-100 rounded-xl min-h-[22rem] md:min-h-[28rem] lg:min-h-[32rem]">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="max-h-full max-w-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
