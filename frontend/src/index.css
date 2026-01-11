@@ -1,0 +1,52 @@
+html {
+  scroll-behavior: smooth;
+}
+@import "tailwindcss";
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+/* Global page background */
+body {
+	background-color: #ffffff;
+}
+
+/* (rollback) remove border-fill-hover effect to restore original rounded card design */
+
+/* Removed category hover vibration */
+
+/* Circular border-fill animation (black), thin ring, keeps circular shape */
+@property --progress {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.circle-border-fill {
+  position: relative;
+}
+.circle-border-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 4px; /* thicker ring */
+  border-radius: 9999px; /* ensures circle */
+  background: conic-gradient(#000 0deg, #000 var(--progress), transparent var(--progress));
+  transition: --progress 2000ms ease-in-out;
+  pointer-events: none;
+  /* Mask to show only the ring area, not the content */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.circle-border-fill:hover::before {
+  --progress: 360deg;
+}

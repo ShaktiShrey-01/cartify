@@ -1,0 +1,18 @@
+.centered-slide-carousel .swiper-wrapper {
+  width: 100%;
+  height: max-content !important;
+  padding-bottom: 64px !important;
+  -webkit-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+  position: relative;
+}
+
+.centered-slide-carousel .swiper-pagination-bullet {
+  background: currentColor;
+  opacity: 0.35;
+}
+
+.centered-slide-carousel .swiper-pagination-bullet-active {
+  background: currentColor !important;
+  opacity: 1;
+}
