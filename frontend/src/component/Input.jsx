@@ -19,11 +19,11 @@ const Input = React.forwardRef(function
           ref={ref}
           type={resolvedType}
           placeholder={placeholder}
-          className={`px-4 py-3 rounded-lg border ${
+          className={`w-full px-4 py-3 rounded-lg border ${
             error 
               ? 'border-red-500 focus:ring-red-500' 
               : 'border-gray-300 focus:ring-[#4169e1]'
-          } focus:outline-none focus:ring-2 transition-all duration-200 ${isPassword ? 'pr-10' : ''} ${className}`}
+          } focus:outline-none focus:ring-2 transition-all duration-200 ${isPassword ? 'pr-12' : ''} ${className}`}
           {...props}
         />
         {isPassword ? (
@@ -31,7 +31,7 @@ const Input = React.forwardRef(function
             type="button"
             aria-label={show ? 'Hide password' : 'Show password'}
             onClick={() => setShow((v) => !v)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black"
+            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black"
           >
             {show ? (
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
