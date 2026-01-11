@@ -1,5 +1,8 @@
 import './categories.css';
 import ImageWithFallback from './ImageWithFallback';
+import { assertAssetsPresent } from '../utils/assertAssets';
+
+assertAssetsPresent();
 import { Link } from 'react-router-dom';
 const electronicsImage = new URL('../assets/e.png', import.meta.url).href;
 const groceryImage = new URL('../assets/g.png', import.meta.url).href;

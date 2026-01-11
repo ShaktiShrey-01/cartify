@@ -14,6 +14,8 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import './slider.css'
+import { assertAssetsPresent } from '../utils/assertAssets'
+assertAssetsPresent()
 
 // Use URL-based asset resolution to avoid issues with spaces in filenames on Linux builds
 const slide1 = new URL("../assets/slide1.png", import.meta.url).href;
