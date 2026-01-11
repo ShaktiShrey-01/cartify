@@ -151,7 +151,9 @@ const ProductDetail = () => {
                 <div className="bg-linear-to-br from-gray-50 to-gray-100 rounded-xl p-4 md:p-6 border border-gray-200">
                   <h3 className="text-base md:text-lg font-bold text-black mb-3">Product Description</h3>
                   <p className="text-sm md:text-base text-gray-700 leading-relaxed">
-                    High-quality {product.category} product with excellent features and durability. This premium product is designed to meet your needs with superior craftsmanship and attention to detail. Perfect for everyday use with long-lasting performance and reliability.
+                    {product.description && String(product.description).trim().length > 0
+                      ? product.description
+                      : `High-quality ${product.category} product with excellent features and durability. This premium product is designed to meet your needs with superior craftsmanship and attention to detail. Perfect for everyday use with long-lasting performance and reliability.`}
                   </p>
                 </div>
 
