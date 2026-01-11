@@ -81,6 +81,14 @@ const Loader = ({ type = 'card', count = 5 }) => {
     );
   }
 
+  if (type === 'footer') {
+    return (
+      <div className="w-full flex justify-center p-0 mt-auto mb-3 animate-pulse">
+        <div className="w-[98vw] min-w-90 max-w-375 h-10 md:h-12 rounded-full bg-gray-200 border border-gray-300"></div>
+      </div>
+    );
+  }
+
   return null;
 };
 

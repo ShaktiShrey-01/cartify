@@ -1,12 +1,25 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Loader from "./Loader";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showSkeleton, setShowSkeleton] = useState(false);
+
+  useEffect(() => {
+    // Brief skeleton on mount to avoid awkward appearance during page load
+    const t = setTimeout(() => setShowSkeleton(false), 600);
+    setShowSkeleton(true);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <footer className="w-full flex justify-center p-0 mt-auto mb-3">
       {/* Container: relative added to allow absolute positioning of text on mobile */}
-      <div className="relative w-[98vw] min-w-90 max-w-375 h-10 md:h-12 flex items-center justify-center px-4 rounded-full ring-[#4169e1]/85 ring-2 backdrop-blur-md shadow-[0_-10px_20px_-12px_rgba(0,0,0,0.35)] bg-white/55 text-black">
+      {showSkeleton ? (
+        <Loader type="footer" />
+      ) : (
+        <div className="relative w-[98vw] min-w-90 max-w-375 h-10 md:h-12 flex items-center justify-center px-4 rounded-full ring-[#4169e1]/85 ring-2 backdrop-blur-md shadow-[0_-10px_20px_-12px_rgba(0,0,0,0.35)] bg-white/55 text-black">
         
         {/* Copyright Text: Absolute on mobile to keep it left without pushing icons */}
         <div className="absolute left-4 md:relative md:left-0 md:order-1 text-[10px] md:text-xs font-medium text-black">
@@ -27,7 +40,7 @@ const Footer = () => {
             </svg>
           </a>
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/shakti33"
             target="_blank"
             rel="noreferrer"
             className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-[#0a66c2] text-[#0a66c2] bg-transparent hover:bg-[#0a66c2] hover:text-white transition-all duration-300 hover:scale-110"
@@ -49,7 +62,8 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-      </div>
+        </div>
+      )}
     </footer>
   );
 };

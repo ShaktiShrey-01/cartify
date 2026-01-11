@@ -1,8 +1,8 @@
 import './categories.css';
 import { Link } from 'react-router-dom';
-import electronicsImage from '../assets/electronicsbanner.jpg';
+import electronicsImage from '../assets/electronics.png';
 import groceryImage from '../assets/grocery.png';
-import clothingImage from '../assets/clothing.webp';
+import clothingImage from '../assets/clothing.png';
 
 const Categories = () => {
   const categories = [
