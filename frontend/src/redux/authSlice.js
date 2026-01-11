@@ -24,7 +24,9 @@ const authSlice = createSlice({
     hydrationSuccess: (state, action) => {
       state.isHydrating = false;
       state.isAuthenticated = true;
-      state.user = action.payload;
+      // Normalize payload: sometimes `{ user, accesstoken }`, sometimes plain user
+      const payload = action.payload;
+      state.user = payload && payload.user ? payload.user : payload;
       state.error = null;
     },
     hydrationFailure: (state) => {
@@ -35,7 +37,9 @@ const authSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isLoading = false;
       state.isAuthenticated = true;
-      state.user = action.payload;
+      // Normalize payload to a plain user object
+      const payload = action.payload;
+      state.user = payload && payload.user ? payload.user : payload;
       state.error = null;
     },
     loginFailure: (state, action) => {
