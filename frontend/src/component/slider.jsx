@@ -18,9 +18,9 @@ import './slider.css'
 const slide1 = new URL("../assets/slide1.png", import.meta.url).href;
 const slide2 = new URL("../assets/slide 2.png", import.meta.url).href;
 const slide3 = new URL("../assets/slide3.png", import.meta.url).href;
-const slide4 = new URL("../assets/slide 4.jpg", import.meta.url).href;
+const slide4 = new URL("../assets/s4.jpg", import.meta.url).href;
 const slide5 = new URL("../assets/slide 5.avif", import.meta.url).href;
-const slide6 = new URL("../assets/slide 6.avif", import.meta.url).href;
+const slide6 = new URL("../assets/s6.avif", import.meta.url).href;
 
 const Slider = () => {
   // Banner images (static imports)
