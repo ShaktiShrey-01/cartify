@@ -35,7 +35,7 @@ const Admin = () => {
     setProductsError('')
     try {
       // NEW: Fetch products from backend.
-      const res = await fetch(`${API_BASE}/api/v1/products/getallproducts`)
+      const res = await fetch(`${API_BASE}/api/v1/products/getallproducts`, { credentials: 'include' })
       if (!res.ok) throw new Error('Failed to load products')
       const json = await res.json()
       const data = unwrapApiResponse(json)
