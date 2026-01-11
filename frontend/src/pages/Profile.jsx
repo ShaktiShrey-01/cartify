@@ -82,12 +82,12 @@ const Profile = () => {
     <div className="min-h-screen w-full bg-gray-50 flex justify-center items-start px-4 pt-4">
       <div className="w-full max-w-md md:max-w-2xl bg-white rounded-2xl shadow-lg overflow-hidden">
         {/* Blue Header Background */}
-        <div className="h-24 bg-gradient-to-r from-[#4169e1] to-[#667eea] w-full"></div>
+        <div className="h-24 bg-linear-to-r from-[#4169e1] to-[#667eea] w-full"></div>
 
         {/* Profile Content */}
         <div className="px-6 md:px-8 pb-8 -mt-12 flex flex-col items-center">
           {/* User Photo with Emoji */}
-          <div className="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md bg-gradient-to-br from-purple-200 to-blue-200 flex items-center justify-center text-5xl">
+          <div className="w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md bg-linear-to-br from-purple-200 to-blue-200 flex items-center justify-center text-5xl">
             👤
           </div>
 

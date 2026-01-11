@@ -35,7 +35,7 @@ const Featured = () => {
         Featured
       </h2>
 
-      <div className="overflow-x-auto overflow-y-hidden pb-6 md:pb-8 scrollbar-hide max-w-[90rem] mx-auto mt-8 md:mt-10">
+      <div className="overflow-x-auto overflow-y-hidden pb-6 md:pb-8 scrollbar-hide max-w-360 mx-auto mt-8 md:mt-10">
         {loading ? (
           <Loader type="card" count={5} />
         ) : error ? (
@@ -52,7 +52,7 @@ const Featured = () => {
             {featuredProducts.map((product) => (
               <div
                 key={product.id ?? product.name}
-                className="w-[14rem] md:w-[16rem] transform transition-transform duration-[1400ms] ease-in-out hover:scale-[1.05] md:hover:scale-[1.03]"
+                className="w-56 md:w-64 transform transition-transform duration-1400 ease-in-out hover:scale-[1.05] md:hover:scale-[1.03]"
               >
                 <Card product={product} cartBtnClassName="cart-button--featured" size="featured" />
               </div>

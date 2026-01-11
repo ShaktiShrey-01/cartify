@@ -105,7 +105,7 @@ const ProductDetail = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 bg-white rounded-2xl p-6 md:p-8 lg:p-10 shadow-lg">
             {/* Product Image */}
-            <div className="flex justify-center items-center lg:items-start bg-gray-100 rounded-xl min-h-[22rem] md:min-h-[28rem] lg:min-h-[32rem]">
+            <div className="flex justify-center items-center lg:items-start bg-gray-100 rounded-xl min-h-88 md:min-h-112 lg:min-h-128">
               <img
                 src={product.image}
                 alt={product.name}
