@@ -17,16 +17,16 @@ const Card = ({ product, showBuyNow = false, cartBtnClassName = '', size = 'defa
     <Link to={`/product/${id}`} className="block">
       <div className="group shrink-0 bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 h-full">
         {/* Image Container */}
-        <div className={`relative w-full ${size === 'featured' ? 'h-[11rem] md:h-[12rem]' : 'h-45 md:h-55'} bg-gray-100 overflow-hidden`}>
+        <div className={`relative w-full ${size === 'featured' ? 'h-[11rem] md:h-[12rem]' : 'h-45 md:h-55'} bg-gray-100 flex items-center justify-center`}>
           {image ? (
             <img
               src={image}
               alt={name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="max-w-full max-h-full object-contain"
               loading="eager"
             />
           ) : null}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
           
         </div>
 
