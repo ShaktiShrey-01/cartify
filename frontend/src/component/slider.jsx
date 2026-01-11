@@ -82,6 +82,7 @@ const Slider = () => {
             else if (banner.id === 1 || banner.id === 5) to = '/grocery'
             else if (banner.id === 3) to = '/clothing'
 
+            const isFirst = banner.id === 1
             const content = (
               <div className="rounded-2xl h-50 md:h-70 overflow-hidden border border-black/5 bg-gray-100">
                 {banner.image ? (
@@ -89,7 +90,9 @@ const Slider = () => {
                     src={banner.image}
                     alt={banner.alt}
                     className="w-full h-full object-cover object-center"
-                    loading="lazy"
+                    loading={isFirst ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchpriority={isFirst ? "high" : "low"}
                   />
                 ) : null}
               </div>

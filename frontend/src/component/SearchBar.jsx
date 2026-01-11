@@ -16,7 +16,7 @@ const SearchBar = ({ isOpen, onClose }) => {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/v1/products/getallproducts`);
+        const res = await fetch(`${API_BASE}/api/v1/products/getallproducts`, { credentials: 'include' });
         if (!res.ok) return;
         const json = await res.json();
         const data = unwrapApiResponse(json);
@@ -48,17 +48,17 @@ const SearchBar = ({ isOpen, onClose }) => {
     // Helper to normalize string values
     const normalize = (value) => String(value ?? '').toLowerCase();
 
-    // Only match if any field starts with the query
+    // Match if any field includes the query (case-insensitive)
     const results = allProducts.filter((product) => {
       const name = normalize(product?.name);
       const category = normalize(product?.category);
       const type = normalize(product?.type);
       const id = normalize(product?.id);
       return (
-        name.startsWith(query) ||
-        category.startsWith(query) ||
-        type.startsWith(query) ||
-        id.startsWith(query)
+        name.includes(query) ||
+        category.includes(query) ||
+        type.includes(query) ||
+        id.includes(query)
       );
     });
 
@@ -214,6 +214,9 @@ const SearchBar = ({ isOpen, onClose }) => {
                             src={product.image} 
                             alt={product.name}
                             className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                            fetchpriority="low"
                           />
                         ) : null}
                       </div>
