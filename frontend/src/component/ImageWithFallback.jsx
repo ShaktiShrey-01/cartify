@@ -17,8 +17,13 @@ const ImageWithFallback = ({
       className={className}
       loading={loading}
       decoding={decoding}
-      onError={() => {
+      onError={(e) => {
         if (fallbackSrc && imgSrc !== fallbackSrc) {
+          // Helpful console warning in case of image decode/fetch issues
+          if (typeof window !== 'undefined') {
+            // eslint-disable-next-line no-console
+            console.warn('Image failed, using fallback:', { alt, src: imgSrc, fallbackSrc })
+          }
           setImgSrc(fallbackSrc)
         }
       }}

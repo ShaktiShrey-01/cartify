@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const electronicsImage = new URL('../assets/e.png', import.meta.url).href;
 const groceryImage = new URL('../assets/g.png', import.meta.url).href;
 const clothingImage = new URL('../assets/c.png', import.meta.url).href;
+const fallbackIcon = new URL('../assets/cart.png', import.meta.url).href;
 
 const Categories = () => {
   const categories = [
@@ -23,6 +24,7 @@ const Categories = () => {
                 {category.image && (
                   <ImageWithFallback
                     src={category.image}
+                    fallbackSrc={fallbackIcon}
                     alt={category.name}
                     className="w-full h-full object-cover transition-transform duration-[700ms] ease-out"
                     loading="eager"
