@@ -2,6 +2,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import compression from "compression";
 const app = express();
 
 
@@ -40,7 +41,12 @@ app.options(/.*/, cors(corsOptions));
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-app.use(express.static("public"));
+// Enable gzip compression for faster payloads
+app.use(compression());
+// Trust Render/Netlify proxies to set correct protocol & IP
+app.set('trust proxy', 1);
+// Cache static assets for a day
+app.use(express.static("public", { maxAge: "1d" }));
 
 // Register routes after parsers are in place
 import reviewRouter from "./routes/review.routes.js";
