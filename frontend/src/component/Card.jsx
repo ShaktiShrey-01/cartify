@@ -23,7 +23,9 @@ const Card = ({ product, showBuyNow = false, cartBtnClassName = '', size = 'defa
               src={image}
               alt={name}
               className="max-w-full max-h-full object-contain"
-              loading="eager"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
             />
           ) : null}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>

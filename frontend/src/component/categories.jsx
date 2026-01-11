@@ -24,6 +24,9 @@ const Categories = () => {
                     src={category.image}
                     alt={category.name}
                     className="w-full h-full object-cover transition-transform duration-2000 ease-in-out"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
                   />
                 )}
                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-2000 ease-in-out"></div>
