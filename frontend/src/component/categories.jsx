@@ -1,13 +1,8 @@
 import './categories.css';
-import ImageWithFallback from './ImageWithFallback';
-import { assertAssetsPresent } from '../utils/assertAssets';
-
-assertAssetsPresent();
 import { Link } from 'react-router-dom';
-const electronicsImage = new URL('../assets/e.png', import.meta.url).href;
-const groceryImage = new URL('../assets/g.png', import.meta.url).href;
-const clothingImage = new URL('../assets/c.png', import.meta.url).href;
-const fallbackIcon = new URL('../assets/cart.png', import.meta.url).href;
+import electronicsImage from '../assets/electronicsbanner.jpg';
+import groceryImage from '../assets/grocery.png';
+import clothingImage from '../assets/clothing.webp';
 
 const Categories = () => {
   const categories = [
@@ -23,19 +18,17 @@ const Categories = () => {
         <div className="flex gap-12 md:gap-24 px-4 min-w-max justify-center">
           {categories.map((category) => (
             <Link key={category.id} to={category.path} className="shrink-0 group">
-              <div className="category-card circle-border-fill relative w-44 h-44 md:w-72 md:h-72 rounded-full overflow-hidden shadow-lg hover:shadow-2xl float-soft transform transition-transform duration-[700ms] ease-out group-hover:scale-[1.08] cursor-pointer">
+              <div className="category-card circle-border-fill relative w-44 h-44 md:w-72 md:h-72 rounded-full overflow-hidden shadow-lg hover:shadow-2xl float-soft transform transition-transform duration-[2000ms] ease-in-out group-hover:scale-[1.08] cursor-pointer">
                 {category.image && (
-                  <ImageWithFallback
+                  <img
                     src={category.image}
-                    fallbackSrc={fallbackIcon}
                     alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-[700ms] ease-out"
-                    loading="eager"
+                    className="w-full h-full object-cover transition-transform duration-[2000ms] ease-in-out"
                   />
                 )}
-                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-[700ms] ease-out"></div>
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-[2000ms] ease-in-out"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white group-hover:scale-110 transition-transform duration-[700ms] ease-out">
+                  <div className="text-center text-white group-hover:scale-110 transition-transform duration-[2000ms] ease-in-out">
                     <h3 className="text-xl md:text-3xl font-bold drop-shadow-lg">{category.name}</h3>
                   </div>
                 </div>

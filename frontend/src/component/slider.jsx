@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Loader } from '../index.js'
-import ImageWithFallback from './ImageWithFallback'
 // Swiper is a popular, lightweight slider/carousel library.
 // We use it here to build the homepage banner slider with:
 // - Touch/drag support
@@ -14,16 +13,13 @@ import { Autoplay, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import './slider.css'
-import { assertAssetsPresent } from '../utils/assertAssets'
-assertAssetsPresent()
 
-// Use URL-based asset resolution to avoid issues with spaces in filenames on Linux builds
-const slide1 = new URL("../assets/slide1.png", import.meta.url).href;
-const slide2 = new URL("../assets/slide 2.png", import.meta.url).href;
-const slide3 = new URL("../assets/slide3.png", import.meta.url).href;
-const slide4 = new URL("../assets/s4.jpg", import.meta.url).href;
-const slide5Avif = new URL("../assets/slide 5.avif", import.meta.url).href;
-const slide6Avif = new URL("../assets/s6.avif", import.meta.url).href;
+import slide1 from "../assets/slide1.png";
+import slide2 from "../assets/slide 2.png";
+import slide3 from "../assets/slide3.png";
+import slide4 from "../assets/slide 4.webp";
+import slide5 from "../assets/slide 5.avif";
+import slide6 from "../assets/slide 6.webp";
 
 const Slider = () => {
   // Banner images (static imports)
@@ -32,9 +28,8 @@ const Slider = () => {
     { id: 2, image: slide2, alt: "Slide 2" },
     { id: 3, image: slide3, alt: "Slide 3" },
     { id: 4, image: slide4, alt: "Slide 4" },
-    // Provide fallbacks for AVIF slides for browsers that don't support AVIF
-    { id: 5, image: slide5Avif, alt: "Slide 5", fallback: slide1 },
-    { id: 6, image: slide6Avif, alt: "Slide 6", fallback: slide3 }
+    { id: 5, image: slide5, alt: "Slide 5" },
+    { id: 6, image: slide6, alt: "Slide 6" }
   ];
 
   if (!banners.length) return null
@@ -90,13 +85,11 @@ const Slider = () => {
             const content = (
               <div className="rounded-2xl h-50 md:h-70 overflow-hidden border border-black/5 bg-gray-100">
                 {banner.image ? (
-                  <ImageWithFallback
+                  <img
                     src={banner.image}
-                    fallbackSrc={banner.fallback}
                     alt={banner.alt}
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
-                    decoding="async"
                   />
                 ) : null}
               </div>
