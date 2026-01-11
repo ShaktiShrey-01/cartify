@@ -15,6 +15,7 @@ const Login = () => {
   const [buttonStatus, setButtonStatus] = useState(null)
   const [formAnimation, setFormAnimation] = useState('')
   const [localLoading, setLocalLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   
   const { 
     register, 
@@ -109,19 +110,42 @@ const Login = () => {
                 })}
               />
 
-              <Input
-                label="Password"
-                type="password"
-                placeholder="Enter your password"
-                error={errors.password?.message}
-                {...register('password', {
-                  required: 'Password is required',
-                  minLength: {
-                    value: 6,
-                    message: 'Password must be at least 6 characters'
-                  }
-                })}
-              />
+              <div className="w-full flex flex-col gap-2">
+                <label className="text-sm font-semibold text-gray-700">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Enter your password"
+                    className={`w-full px-4 py-3 rounded-lg border ${errors.password?.message ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-[#4169e1]'} focus:outline-none focus:ring-2 transition-all duration-200 pr-12`}
+                    {...register('password', {
+                      required: 'Password is required',
+                      minLength: { value: 6, message: 'Password must be at least 6 characters' }
+                    })}
+                  />
+                  <button
+                    type="button"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 text-gray-600 hover:text-black"
+                  >
+                    {showPassword ? (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                        <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+                        <path d="M1 1l22 22" />
+                      </svg>
+                    ) : (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {errors.password?.message ? (
+                  <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
+                ) : null}
+              </div>
 
 
 
