@@ -35,8 +35,8 @@ const SearchBar = ({ isOpen, onClose }) => {
 
   /**
    * Filter products by search query.
-   * Only matches if the product name, category, type, or id STARTS WITH the query (not includes).
-   * This prevents showing all products when typing a single letter.
+   * Matches only when the product name STARTS WITH the query (case-insensitive).
+   * This prevents unrelated results (e.g., matching by type/id) when typing a single letter.
    *
    * @returns {Array} Filtered product results (max 25)
    */
@@ -48,18 +48,10 @@ const SearchBar = ({ isOpen, onClose }) => {
     // Helper to normalize string values
     const normalize = (value) => String(value ?? '').toLowerCase();
 
-    // Match if any field includes the query (case-insensitive)
+    // Match only product names that start with the query
     const results = allProducts.filter((product) => {
       const name = normalize(product?.name);
-      const category = normalize(product?.category);
-      const type = normalize(product?.type);
-      const id = normalize(product?.id);
-      return (
-        name.includes(query) ||
-        category.includes(query) ||
-        type.includes(query) ||
-        id.includes(query)
-      );
+      return name.startsWith(query);
     });
 
     return results.slice(0, 25);
