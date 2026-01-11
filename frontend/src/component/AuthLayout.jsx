@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../assets/Cart.png'
+import logo from '../assets/cart.png'
 
 // Shared auth page layout (Login/Signup)
 // - Keeps the brand column + card sizing consistent

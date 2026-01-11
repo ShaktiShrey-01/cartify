@@ -22,7 +22,7 @@ import store from './redux/store'
 import Input from './component/Input'
 import Button from './component/Button'
 import Form from './component/Form'
-import logo from './assets/Cart.png'
+import logo from './assets/cart.png'
 import Profile from "./pages/Profile";
 import Ordersummary from "./pages/Ordersummary";
 export { Ordersummary, Profile, Form, Input, Button, logo, Login, Signup, store, Electronics, Grocery, Clothing, ProductDetail, Cart, Review, Loader, SortNav, Card, Slider, Categories, Featured, Testimonial, Layout, Header, Footer, Home, CartBtn };
