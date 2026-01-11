@@ -1,0 +1,9 @@
+[build]
+  base = "frontend"
+  command = "npm install && npm run build"
+  publish = "frontend/dist"
+
+[build.environment]
+  NODE_VERSION = "20.18.0"
+  NPM_CONFIG_OPTIONAL = "true"
+  NPM_CONFIG_IGNORE_OPTIONAL = "false"
