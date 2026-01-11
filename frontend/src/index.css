@@ -39,7 +39,7 @@ body {
   padding: 4px; /* thicker ring */
   border-radius: 9999px; /* ensures circle */
   background: conic-gradient(#000 0deg, #000 var(--progress), transparent var(--progress));
-  transition: --progress 2000ms ease-in-out;
+  transition: --progress 700ms ease-out;
   pointer-events: none;
   /* Mask to show only the ring area, not the content */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);

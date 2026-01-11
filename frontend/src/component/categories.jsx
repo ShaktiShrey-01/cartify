@@ -18,17 +18,17 @@ const Categories = () => {
         <div className="flex gap-12 md:gap-24 px-4 min-w-max justify-center">
           {categories.map((category) => (
             <Link key={category.id} to={category.path} className="shrink-0 group">
-              <div className="category-card circle-border-fill relative w-44 h-44 md:w-72 md:h-72 rounded-full overflow-hidden shadow-lg hover:shadow-2xl float-soft transform transition-transform duration-[2000ms] ease-in-out group-hover:scale-[1.08] cursor-pointer">
+              <div className="category-card circle-border-fill relative w-44 h-44 md:w-72 md:h-72 rounded-full overflow-hidden shadow-lg hover:shadow-2xl float-soft transform transition-transform duration-[700ms] ease-out group-hover:scale-[1.08] cursor-pointer">
                 {category.image && (
                   <img
                     src={category.image}
                     alt={category.name}
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] ease-in-out"
+                    className="w-full h-full object-cover transition-transform duration-[700ms] ease-out"
                   />
                 )}
-                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-[2000ms] ease-in-out"></div>
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/20 transition-colors duration-[700ms] ease-out"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white group-hover:scale-110 transition-transform duration-[2000ms] ease-in-out">
+                  <div className="text-center text-white group-hover:scale-110 transition-transform duration-[700ms] ease-out">
                     <h3 className="text-xl md:text-3xl font-bold drop-shadow-lg">{category.name}</h3>
                   </div>
                 </div>
