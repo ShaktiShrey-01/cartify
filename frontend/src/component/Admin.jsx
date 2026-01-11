@@ -151,7 +151,8 @@ const Admin = () => {
         const res = await fetch(`${API_BASE}/api/v1/products/addproduct`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
+          credentials: 'include'
         })
         if (!res.ok) throw new Error('Failed to create product')
         const json = await res.json()
