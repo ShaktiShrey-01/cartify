@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Admin from '../component/Admin';
 import UserProfile from '../component/userprofile';
+import { API_BASE } from '../utils/api';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Profile = () => {
               if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
                 try {
                   // Call backend delete user endpoint (to be implemented)
-                  const res = await fetch('/api/v1/users/me', {
+                  const res = await fetch(`${API_BASE}/api/v1/users/me`, {
                     method: 'DELETE',
                     credentials: 'include',
                   });
@@ -124,7 +125,7 @@ const Profile = () => {
             onClick={async () => {
               if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
                 try {
-                  const res = await fetch('/api/v1/users/me', {
+                  const res = await fetch(`${API_BASE}/api/v1/users/me`, {
                     method: 'DELETE',
                     credentials: 'include',
                   });
