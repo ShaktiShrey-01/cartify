@@ -13,7 +13,7 @@ const Clothing = () => {
     const fetchProducts = async () => {
       try {
         // Fetch only clothing products from backend
-        const res = await fetch(`${API_BASE}/api/v1/products/getallproducts?categoryKey=clothes`);
+        const res = await fetch(`${API_BASE}/api/v1/products/getallproducts?categoryKey=clothing`);
         if (!res.ok) throw new Error(`Failed to load products: ${res.status}`);
         const json = await res.json();
         const clothingProducts = unwrapApiResponse(json);

@@ -31,7 +31,7 @@ const Featured = () => {
 
   return (
     <section className="w-full px-6 md:px-10 pt-2 md:pt-3 pb-2 md:pb-3">
-      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm text-left md:text-center -mt-12 md:-mt-10 mb-2 md:mb-0 -ml-1">
+      <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm text-center -mt-12 md:-mt-10 mb-2 md:mb-0 px-2">
         Featured
       </h2>
 
