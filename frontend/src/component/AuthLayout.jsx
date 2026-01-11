@@ -23,7 +23,7 @@ const AuthLayout = ({ formAnimation = '', children }) => {
         <div className="flex flex-col md:flex-row md:items-start justify-center md:gap-16">
           <div className="flex flex-col items-center md:items-start mb-10 md:mb-0 md:mt-4">
             {logo ? (
-              <img src={logo} alt="Cartify" className="w-20 h-20 md:w-32 md:h-32 mb-2" />
+              <img src={logo} alt="Cartify" className="w-20 h-20 md:w-32 md:h-32 lg:w-40 lg:h-40 mb-2" />
             ) : null}
             <h2 className="text-4xl md:text-6xl font-extrabold text-black">Cartify</h2>
             <p className="text-gray-600 mt-1 text-center md:text-left">
