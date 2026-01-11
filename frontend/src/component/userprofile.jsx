@@ -358,7 +358,7 @@ const UserProfile = () => {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
             <h3 className="text-xl font-bold text-gray-800 mb-4">
-              {editingAddressId ? 'Edit Address' : 'Add New Address'}
+              {editingAddressId !== null && editingAddressId !== undefined ? 'Edit Address' : 'Add New Address'}
             </h3>
 
             <Form
@@ -380,7 +380,7 @@ const UserProfile = () => {
                 onClick={handleAddAddress}
                 className="flex-1 bg-[#4169e1] hover:bg-[#315ac1] text-white font-medium py-2 rounded-lg transition-colors"
               >
-                {editingAddressId ? 'Update' : 'Add'}
+                {editingAddressId !== null && editingAddressId !== undefined ? 'Update' : 'Add'}
               </button>
               <button
                 onClick={() => {
