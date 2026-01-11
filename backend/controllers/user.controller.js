@@ -39,10 +39,11 @@ const registeruser=asynchnadler(async(req,res)=>{
     }
     // Generate tokens and set cookies just like login
     const {accesstoken, refreshtoken} = await genrateaccessandrefreshtoken(user._id);
+    const isProd = process.env.NODE_ENV === 'production';
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        secure: isProd,
+        sameSite: isProd ? 'none' : 'lax',
     };
     return res
         .status(201)
@@ -73,10 +74,11 @@ const loginuser=asynchnadler(async(req,res)=>{
 
 
     const loggedinuser=await User.findById(user._id).select("-password -refreshtoken");
+    const isProd = process.env.NODE_ENV === 'production';
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Only secure in production
-        sameSite: 'lax', // Recommended for most apps
+        secure: isProd, // Only secure in production
+        sameSite: isProd ? 'none' : 'lax',
     };
       
     return res.status(200)
@@ -95,9 +97,11 @@ const logoutuser=asynchnadler(async(req,res)=>{
         {new:true}
     );
 
+    const isProd = process.env.NODE_ENV === 'production';
     const options={
         httpOnly:true,
-        secure:true
+        secure:isProd,
+        sameSite: isProd ? 'none' : 'lax',
     };
 
     return res
@@ -126,9 +130,11 @@ const refreshtoken=asynchnadler(async(req,res)=>{
     if(incomingrefreshtoken!==user.refreshtoken){
         throw new apierror(401,"unauthorized access,invalid refresh token,expired access token");
     }
+    const isProd = process.env.NODE_ENV === 'production';
     const options={
         httpOnly:true,
-        secure:true,
+        secure:isProd,
+        sameSite: isProd ? 'none' : 'lax',
     };
     const{accesstoken,refreshtoken}=await genrateaccessandrefreshtoken(user._id);
     return res
