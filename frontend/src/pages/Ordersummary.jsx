@@ -104,8 +104,7 @@ const Ordersummary = () => {
         pincode: String(formData.pincode).trim(),
       };
       if (editingIndex !== null && editingIndex !== undefined) {
-        const addressId = addresses[editingIndex]?._id;
-        const response = await fetch(`${API_BASE}/api/v1/addresses/${addressId}`, {
+        const response = await fetch(`${API_BASE}/api/v1/addresses/${editingIndex}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -142,8 +141,7 @@ const Ordersummary = () => {
     if (!userId) return;
     if (!window.confirm('Are you sure you want to delete this address?')) return;
     try {
-      const addressId = addresses[index]?._id;
-      const response = await fetch(`${API_BASE}/api/v1/addresses/${addressId}`, { method: 'DELETE', credentials: 'include' });
+      const response = await fetch(`${API_BASE}/api/v1/addresses/${index}`, { method: 'DELETE', credentials: 'include' });
       if (!response.ok) {
         alert('Failed to delete address. Please try again.');
         return;
