@@ -81,7 +81,7 @@ export const getReviews = async (req, res, next) => {
 // Update review (only by creator)
 export const updateReview = async (req, res, next) => {
   try {
-    const review = await Review.findById(req.params.id).lean();
+    const review = await Review.findById(req.params.id);
     if (!review) return next(new ApiError(404, 'Review not found'));
     if (!req.user || review.createdby.toString() !== req.user._id.toString()) {
       return next(new ApiError(403, 'You are not authorized to update this review'));
@@ -98,7 +98,7 @@ export const updateReview = async (req, res, next) => {
 // Delete review (only by creator)
 export const deleteReview = async (req, res, next) => {
   try {
-    const review = await Review.findById(req.params.id).lean();
+    const review = await Review.findById(req.params.id);
     if (!review) return next(new ApiError(404, 'Review not found'));
     if (!req.user || review.createdby.toString() !== req.user._id.toString()) {
       return next(new ApiError(403, 'You are not authorized to delete this review'));
