@@ -72,8 +72,16 @@ export const getMyOrders = async (req, res) => {
   if (!userId) {
     throw new apierror(401, "Unauthorized")
   }
+  // Pagination: ?page=1&limit=20
+  const page = Math.max(1, parseInt(req.query.page) || 1);
+  const limit = Math.max(1, Math.min(50, parseInt(req.query.limit) || 20));
+  const skip = (page - 1) * limit;
   // Find all orders for this user, newest first
-  const orders = await Order.find({ user: userId }).sort({ createdAt: -1 })
+  const orders = await Order.find({ user: userId })
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .lean();
   const shaped = orders.map(toClientOrder)
   return res.status(200).json(new apiresponse(200, shaped, "Orders fetched successfully"))
 }
@@ -83,7 +91,7 @@ export const getOrderById = async (req, res) => {
   const userId = req?.user?._id
   const { id } = req.params
   // Only allow access to user's own orders
-  const order = await Order.findOne({ _id: id, user: userId })
+  const order = await Order.findOne({ _id: id, user: userId }).lean()
   if (!order) throw new apierror(404, "Order not found")
   return res.status(200).json(new apiresponse(200, toClientOrder(order), "Order fetched successfully"))
 }
@@ -93,7 +101,7 @@ export const deleteOrder = async (req, res) => {
   const userId = req?.user?._id
   const { id } = req.params
   // Only allow deletion of user's own orders
-  const order = await Order.findOneAndDelete({ _id: id, user: userId })
+  const order = await Order.findOneAndDelete({ _id: id, user: userId }).lean()
   if (!order) throw new apierror(404, "Order not found")
   // Remove order reference from user.orders (ignore errors)
   try {

@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 const genrateaccessandrefreshtoken = async (userid) => {
     try {
-        const user = await User.findById(userid);
+        const user = await User.findById(userid).lean();
         if (!user) {
             throw new apierror(404, "User not found");
         }
@@ -33,7 +33,7 @@ const registeruser=asynchnadler(async(req,res)=>{
         throw new apierror(409,"User with given email or username already exists");
     }
     const user=await User.create({username,email,password});
-    const createduser=await User.findById(user._id).select("-password -refreshtoken");
+    const createduser=await User.findById(user._id).select("-password -refreshtoken").lean();
     if(!createduser){
         throw new apierror(500,"Unable to create user");
     }
@@ -73,7 +73,7 @@ const loginuser=asynchnadler(async(req,res)=>{
     const{accesstoken,refreshtoken}=await genrateaccessandrefreshtoken(user._id);
 
 
-    const loggedinuser=await User.findById(user._id).select("-password -refreshtoken");
+    const loggedinuser=await User.findById(user._id).select("-password -refreshtoken").lean();
     const isProd = process.env.NODE_ENV === 'production';
     const options = {
         httpOnly: true,
@@ -95,7 +95,7 @@ const logoutuser=asynchnadler(async(req,res)=>{
             $set:{refreshtoken:undefined}
         },
         {new:true}
-    );
+    ).lean();
 
     const isProd = process.env.NODE_ENV === 'production';
     const options={
@@ -123,7 +123,7 @@ const refreshtoken=asynchnadler(async(req,res)=>{
         incomingrefreshtoken,
         process.env.REFRESH_TOKEN_SECRET
     );
-    const user=await User.findById(decodedtoken?._id);
+    const user=await User.findById(decodedtoken?._id).lean();
     if(!user){
         throw new apierror(404,"invalid refresh token,user not found");
     }

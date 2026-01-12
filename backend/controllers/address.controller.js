@@ -9,7 +9,7 @@ export const addAddress = asynchnadler(async (req, res) => {
     if (![buildingname, colony, city, state, pincode].every(Boolean)) {
         throw new apierror(400, "All address fields are required");
     }
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).lean();
     if (!user) throw new apierror(404, "User not found");
     const newAddress = { buildingname, colony, city, state, pincode };
     user.address.push(newAddress);
@@ -21,7 +21,7 @@ export const addAddress = asynchnadler(async (req, res) => {
 export const editAddress = asynchnadler(async (req, res) => {
     const { index } = req.params;
     const { buildingname, colony, city, state, pincode } = req.body;
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).lean();
     if (!user) throw new apierror(404, "User not found");
     if (index < 0 || index >= user.address.length) throw new apierror(404, "Address not found");
     user.address[index] = { buildingname, colony, city, state, pincode };
@@ -32,7 +32,7 @@ export const editAddress = asynchnadler(async (req, res) => {
 // Delete an address by index
 export const deleteAddress = asynchnadler(async (req, res) => {
     const { index } = req.params;
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).lean();
     if (!user) throw new apierror(404, "User not found");
     if (index < 0 || index >= user.address.length) throw new apierror(404, "Address not found");
     user.address.splice(index, 1);
@@ -42,7 +42,7 @@ export const deleteAddress = asynchnadler(async (req, res) => {
 
 // Get all addresses for current user
 export const getAddresses = asynchnadler(async (req, res) => {
-    const user = await User.findById(req.user._id).select("address");
+    const user = await User.findById(req.user._id).select("address").lean();
     if (!user) throw new apierror(404, "User not found");
     return res.status(200).json(new apiresponse(200, user.address, "Addresses fetched successfully"));
 });

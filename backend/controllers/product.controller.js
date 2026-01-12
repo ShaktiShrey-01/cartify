@@ -58,7 +58,7 @@ const product=await Product.create({
      reviews,
      image,
 });
-const createdproduct=await Product.findById(product._id);
+const createdproduct=await Product.findById(product._id).lean();
 if(!createdproduct){
    throw new apierror(500,"Unable to create product");
 }
@@ -70,20 +70,28 @@ const getallproducts=asynchnadler(async(req,res)=>{
     const { categoryKey, featured } = req.query;
 
     try {
-        const products=await Product.find().populate("category").populate("reviews");
-        let normalized = products.map(toFrontendProduct);
-
+        // Pagination: ?page=1&limit=20
+        const page = Math.max(1, parseInt(req.query.page) || 1);
+        const limit = Math.max(1, Math.min(50, parseInt(req.query.limit) || 20));
+        const skip = (page - 1) * limit;
+        let query = {};
         if (categoryKey) {
-            const key = String(categoryKey).trim().toLowerCase();
-            normalized = normalized.filter((p) => String(p?.categoryKey || p?.category || "").toLowerCase() === key);
+            query.$or = [
+                { categoryKey: String(categoryKey).trim() },
+                { category: String(categoryKey).trim() }
+            ];
         }
-
         if (featured !== undefined) {
-            const wantFeatured = String(featured).toLowerCase() === "true" || String(featured) === "1";
-            normalized = normalized.filter((p) => Boolean(p?.featured) === wantFeatured);
+            query.featured = String(featured).toLowerCase() === "true" || String(featured) === "1";
         }
-
-        return res.status(200).json(new apiresponse(200,normalized,"Products fetched successfully"));
+        const products = await Product.find(query)
+            .populate({ path: "category", select: "name" })
+            .populate({ path: "reviews", select: "rating title comment createdby createdon" })
+            .skip(skip)
+            .limit(limit)
+            .lean();
+        let normalized = products.map(toFrontendProduct);
+        return res.status(200).json(new apiresponse(200, normalized, "Products fetched successfully"));
     } catch (err) {
         console.error("getallproducts error:", err);
         throw err;
@@ -92,7 +100,10 @@ const getallproducts=asynchnadler(async(req,res)=>{
 
 const getproductbyid=asynchnadler(async(req,res)=>{
    const {id}=req.params;
-   const product=await Product.findById(id).populate("category").populate("reviews");       
+   const product=await Product.findById(id)
+       .populate({ path: "category", select: "name" })
+       .populate({ path: "reviews", select: "rating title comment createdby createdon" })
+       .lean();
     if(!product){
         throw new apierror(404,"Product not found");
     }
