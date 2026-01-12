@@ -143,16 +143,34 @@ const refreshtoken=asynchnadler(async(req,res)=>{
     .json(new apiresponse(200,{accesstoken,refreshtoken},"Access token refreshed successfully"));
 });
 // Delete current user
+import Review from "../models/review.js";
+import Product from "../models/product.js";
+
+// Delete current user and all their reviews
 const deleteCurrentUser = asynchnadler(async (req, res) => {
     const userId = req.user?._id;
     if (!userId) {
         throw new apierror(401, "Unauthorized: No user found");
     }
+
+    // Find all reviews by this user
+    const userReviews = await Review.find({ createdby: userId });
+
+    // Remove each review's reference from its product
+    for (const review of userReviews) {
+        await Product.updateOne({ _id: review.product }, { $pull: { reviews: review._id } });
+    }
+
+    // Delete all reviews by this user
+    await Review.deleteMany({ createdby: userId });
+
+    // Delete the user
     await User.findByIdAndDelete(userId);
+
     // Optionally clear cookies
     res.clearCookie("accesstoken");
     res.clearCookie("refreshtoken");
-    return res.status(200).json(new apiresponse(200, null, "User account deleted successfully"));
+    return res.status(200).json(new apiresponse(200, null, "User account and all reviews deleted successfully"));
 });
 
 export {registeruser,loginuser,logoutuser,refreshtoken, deleteCurrentUser};
