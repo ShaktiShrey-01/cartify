@@ -7,7 +7,8 @@ import jwt from "jsonwebtoken";
 
 const genrateaccessandrefreshtoken = async (userid) => {
     try {
-        const user = await User.findById(userid).lean();
+        // Do NOT use .lean() here, we need Mongoose instance methods
+        const user = await User.findById(userid);
         if (!user) {
             throw new apierror(404, "User not found");
         }
