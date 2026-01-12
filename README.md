@@ -1,73 +1,62 @@
-🛒 Cartify – Full Stack MERN E-Commerce Platform
-✨ Cartify is a full-featured MERN stack e-commerce website built as my first major MERN project.
-The project took ~23 days to build and the main focus was learning real-world application flow, not just UI polish.
-🔗 Live Demo: https://cartify3.netlify.app
-🔗 Portfolio: https://shakportfoilio.netlify.app
-🔗 GitHub Profile: https://github.com/ShaktiShrey-01
-🚀 Tech Stack
-🟢 Frontend
-React (Vite) ⚛️
-Redux Toolkit 🧠
-Responsive UI 📱💻
-🟢 Backend
-Node.js 🟩
-Express.js 🚀
-MongoDB 🍃
-🟢 Authentication & State
-JWT (Access & Refresh Tokens) 🔐
-Redux (authSlice, cart state)
-✨ Features
-🛍️ User Features
-✅ Browse Electronics, Clothing & Grocery products
-✅ Featured products with smooth horizontal scrolling
-✅ Category cards with horizontal scroll
-✅ Skeleton loading UI for better UX during data fetch
-✅ Global Search Bar (available on all pages)
-    • Debounced search
-    • MongoDB-powered results
-✅ Add to Cart functionality
-✅ User Reviews
-    • Add, edit, delete review
-    • Max 1 review per product per user
-✅ Fully Responsive Design
-🔐 Authentication & Authorization
-✅ Login / Signup / Logout
-✅ Delete Account
-✅ JWT-based authentication (Access + Refresh tokens)
-✅ Protected actions (user must be logged in to):
-Add to cart
-Add address
-Add reviews
-🛠️ Admin Panel
-✅ Add new products
-✅ Edit existing products
-✅ Delete products
-✅ Admin-only protected routes
-🎯 Important Notes
-⚠️ Payment gateway integration was NOT a priority for this project.
-🎨 Styling was not the main focus — the goal was to understand:
-MERN architecture
-Authentication flow
-Redux state management
-Backend API design
-Real-world project structure
-🧠 What I Learned
-💡 Building full MERN authentication from scratch
-💡 Using Redux for global state (cart & auth)
-💡 Secure route protection using JWT
-💡 Handling search with debounce & backend filtering
-💡 Admin vs User role-based functionality
-💡 Structuring a scalable MERN project
+# 🛒 Cartify – Full Stack MERN E-Commerce Platform
 
-🏗️ Future Improvements
-🔮 Payment Gateway Integration (Razorpay / Stripe)
-🔮 Order history & checkout flow
-🔮 Better UI & animations
-🔮 Wishlist functionality
-🧑‍💻 Author
-Shakti Shrey
-🌐 Portfolio: https://shakportfoilio.netlify.app
-💼 GitHub: https://github.com/ShaktiShrey-01
-⭐ Support
-If you found this project helpful or inspiring, please consider giving it a ⭐
-Feedback and suggestions are always welcome 🙌
+![MERN Stack](https://img.shields.io/badge/MERN-Stack-green?style=for-the-badge)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+
+**Cartify** is a robust e-commerce application built to master the real-world flow of the MERN stack. Developed over 23 days, this project prioritizes backend architecture, secure authentication, and complex state management over simple UI polish.
+
+🔗 **[Live Demo](https://cartify3.netlify.app)** 🔗 **[Portfolio](https://shakportfoilio.netlify.app)**
+
+---
+
+## 🚀 Tech Stack
+
+### Frontend
+- **React (Vite):** Fast and modern development environment.
+- **Redux Toolkit:** Managing global state for authentication and cart.
+- **Responsive UI:** Designed to work seamlessly on Mobile, Tablets, and Desktops.
+
+### Backend
+- **Node.js & Express.js:** Scalable server-side logic and RESTful API design.
+- **MongoDB:** NoSQL database for flexible data storage.
+- **JWT (JSON Web Tokens):** Secure authentication using Access and Refresh tokens.
+
+---
+
+## ✨ Features
+
+### 🛍️ User Features
+- **Product Browsing:** Explore Electronics, Clothing, and Grocery products.
+- **Optimized UX:** Skeleton loading screens and smooth horizontal scrolling categories.
+- **Global Search:** MongoDB-powered search bar with **Debounced input** to optimize API calls.
+- **Review System:** Add, edit, or delete reviews (restricted to 1 review per user/product).
+- **Cart Management:** Add items to cart with persistent global state.
+
+### 🔐 Auth & Security
+- **Secure JWT Flow:** Implementation of Access and Refresh tokens for long-lived sessions.
+- **Protected Actions:** Login required for adding to cart, adding addresses, or posting reviews.
+- **Account Control:** Users can securely delete their own accounts.
+
+### 🛠️ Admin Panel
+- **Product Management:** Full CRUD (Create, Read, Update, Delete) functionality.
+- **Admin Protection:** Secure routes accessible only by users with Admin privileges.
+
+---
+
+## 🧠 What I Learned
+- **Architecture:** Building a full-stack application from scratch with a scalable folder structure.
+- **Auth Flow:** Implementing professional-grade authentication and route protection.
+- **State Management:** Using Redux to sync UI changes across different pages (Auth, Cart).
+- **Backend Optimization:** Handling search filtering and data fetching efficiently.
+
+> [!NOTE]  
+> **Payment gateway integration** was not a priority for this version. The primary focus was on learning the MERN architecture and authentication flows.
+
+---
+
+## ⚙️ Installation
+
+1. **Clone the repo:**
+   ```bash
+   git clone [https://github.com/ShaktiShrey-01/Cartify.git](https://github.com/ShaktiShrey-01/Cartify.git)
