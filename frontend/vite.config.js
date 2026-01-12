@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     // Visualizer plugin: generates bundle analysis after build
-    visualizer({ open: true }),
+    visualizer({ open: false }),
   ],
   server: {
     proxy: {
