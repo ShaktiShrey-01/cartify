@@ -114,13 +114,15 @@ const Admin = () => {
       setProductFormError('Name and price are required')
       return
     }
+    // Make description optional (allow empty string)
+    const description = typeof productFormValues.description === 'string' ? productFormValues.description : '';
 
     const basePayload = {
       name: productFormValues.name.trim(),
       // NEW: send categoryKey to backend.
       categoryKey: productFormValues.categoryKey,
       price: Number(productFormValues.price),
-      description: productFormValues.description?.trim() || '',
+      description: description.trim(), // allow empty string
       featured: Boolean(productFormValues.featured)
     }
 
