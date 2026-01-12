@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const productschema = new mongoose.Schema({
     name: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String },
     price: { type: Number, required: true },
     // NEW: Keep the old category relation optional (frontend uses categoryKey string).
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: false },

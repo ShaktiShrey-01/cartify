@@ -56,13 +56,12 @@ const addproduct=asynchnadler(async(req,res)=>{
     const {name,description,price,category,categoryKey,type,featured,rating,reviews,image}=req.body;
     const missingRequired =
         !name || String(name).trim() === "" ||
-        !description || String(description).trim() === "" ||
         price === undefined || price === null || String(price).trim() === "" ||
         // NEW: allow either `category` (Category _id) OR `categoryKey` (string)
         (!category || String(category).trim() === "") && (!categoryKey || String(categoryKey).trim() === "");
 
     if (missingRequired) {
-        throw new apierror(400,"All feilds are required");
+        throw new apierror(400,"Name, price, and category are required");
     }
     const existedproduct=await Product.findOne({name});
 
