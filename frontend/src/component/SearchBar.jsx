@@ -1,9 +1,10 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE, unwrapApiResponse } from "../utils/api.js";
 
 const SearchBar = ({ isOpen, onClose }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const debounceTimeout = useRef();
   const [searchResults, setSearchResults] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [productsLoaded, setProductsLoaded] = useState(false);
@@ -65,9 +66,13 @@ const SearchBar = ({ isOpen, onClose }) => {
    * Handle search input changes.
    * Updates the search query state.
    */
+  // Debounced search input handler
   const handleSearch = (e) => {
     const query = e.target.value;
-    setSearchQuery(query);
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(() => {
+      setSearchQuery(query);
+    }, 300); // 300ms debounce
   };
 
   /**
@@ -78,6 +83,7 @@ const SearchBar = ({ isOpen, onClose }) => {
     setSearchResults([]);
     setAllProducts([]);
     setProductsLoaded(false);
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
     onClose();
   };
 
