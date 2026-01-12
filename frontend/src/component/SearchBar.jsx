@@ -70,9 +70,14 @@ const SearchBar = ({ isOpen, onClose }) => {
   const handleSearch = (e) => {
     const query = e.target.value;
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
-    debounceTimeout.current = setTimeout(() => {
+    // If first character, update immediately; else debounce
+    if (query.length <= 1) {
       setSearchQuery(query);
-    }, 300); // 300ms debounce
+    } else {
+      debounceTimeout.current = setTimeout(() => {
+        setSearchQuery(query);
+      }, 100); // 100ms debounce
+    }
   };
 
   /**
