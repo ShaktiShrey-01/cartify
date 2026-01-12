@@ -6,6 +6,9 @@ import {addproduct,getallproducts,getproductbyid,deleteproduct,updateproduct} fr
 // NEW: Accept both JSON (Admin) and multipart (future image upload).
 router.route("/addproduct").post(verifyjwt, requireAdmin, maybeUploadFields([{name:"image",maxCount:5}]), addproduct);
 router.route("/getallproducts").get(getallproducts);
+// Fast search index: minimal fields only
+import { searchIndex } from "../controllers/product.controller.js";
+router.route("/search-index").get(searchIndex);
 router.route("/getproductbyid/:id").get(getproductbyid);
 router.route("/deleteproduct/:id").delete(verifyjwt, requireAdmin, deleteproduct);
 router.route("/updateproduct/:id").put(verifyjwt, requireAdmin, updateproduct);

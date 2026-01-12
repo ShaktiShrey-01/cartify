@@ -17,7 +17,7 @@ const SearchBar = ({ isOpen, onClose }) => {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(`${API_BASE}/api/v1/products/getallproducts`, { credentials: 'include' });
+        const res = await fetch(`${API_BASE}/api/v1/products/search-index`, { credentials: 'include' });
         if (!res.ok) return;
         const json = await res.json();
         const data = unwrapApiResponse(json);

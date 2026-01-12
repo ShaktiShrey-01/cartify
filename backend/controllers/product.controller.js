@@ -1,3 +1,26 @@
+// Fast search index endpoint: returns only minimal fields for all products
+const searchIndex = asynchnadler(async (req, res) => {
+    try {
+        const products = await Product.find({})
+            .select('name price image categoryKey rating')
+            .lean();
+        // No population, just raw data
+        const shaped = Array.isArray(products)
+            ? products.map((p) => ({
+                id: String(p._id),
+                name: p.name,
+                price: p.price,
+                image: p.image,
+                category: p.categoryKey,
+                rating: p.rating
+            }))
+            : [];
+        return res.status(200).json(new apiresponse(200, shaped, "Search index fetched successfully"));
+    } catch (err) {
+        console.error("searchIndex error:", err);
+        return res.status(500).json(new apiresponse(500, [], "Failed to fetch search index"));
+    }
+});
 import {asynchnadler} from "../utils/asynchandler.js";
 import {apierror} from "../utils/apierror.js";
 import {apiresponse} from "../utils/apiresponse.js";
@@ -145,4 +168,4 @@ const updateproduct=asynchnadler(async(req,res)=>{
     return res.status(200).json(new apiresponse(200,toFrontendProduct(product),"Product updated successfully"));
 });
 
-export { addproduct, getallproducts, getproductbyid, deleteproduct, updateproduct };
+export { addproduct, getallproducts, getproductbyid, deleteproduct, updateproduct, searchIndex };
