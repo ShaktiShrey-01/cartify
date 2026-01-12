@@ -6,7 +6,7 @@
 
 **Cartify** is a robust e-commerce application built to master the real-world flow of the MERN stack. Developed over 23 days, this project prioritizes backend architecture, secure authentication, and complex state management over simple UI polish.
 
-🔗 **[Live Demo](https://cartify3.netlify.app)** 🔗 **[Portfolio](https://shakportfoilio.netlify.app)**
+🔗 **[Live Demo](https://cartify3.netlify.app)** 🔗 **[Portfolio](https://shakportfolio.netlify.app/)**
 
 ---
 
