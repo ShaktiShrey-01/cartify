@@ -54,9 +54,3 @@
 > **Payment gateway integration** was not a priority for this version. The primary focus was on learning the MERN architecture and authentication flows.
 
 ---
-
-## ⚙️ Installation
-
-1. **Clone the repo:**
-   ```bash
-   git clone [https://github.com/ShaktiShrey-01/Cartify.git](https://github.com/ShaktiShrey-01/Cartify.git)
