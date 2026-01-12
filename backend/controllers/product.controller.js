@@ -76,10 +76,7 @@ const getallproducts=asynchnadler(async(req,res)=>{
         const skip = (page - 1) * limit;
         let query = {};
         if (categoryKey) {
-            query.$or = [
-                { categoryKey: String(categoryKey).trim() },
-                { category: String(categoryKey).trim() }
-            ];
+            query.categoryKey = String(categoryKey).trim();
         }
         if (featured !== undefined) {
             query.featured = String(featured).toLowerCase() === "true" || String(featured) === "1";
