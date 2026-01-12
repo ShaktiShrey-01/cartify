@@ -109,45 +109,19 @@ const Login = () => {
                 })}
               />
 
-
-              {/* Password input with show/hide toggle */}
-              <div className="relative w-full flex flex-col gap-2">
-                <Input
-                  label="Password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
-                  error={errors.password?.message}
-                  {...register('password', {
-                    required: 'Password is required',
-                    minLength: {
-                      value: 6,
-                      message: 'Password must be at least 6 characters'
-                    }
-                  })}
-                />
-                <button
-                  type="button"
-                  tabIndex={-1}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="absolute right-4 top-9 text-gray-500 hover:text-gray-700 focus:outline-none"
-                  style={{ background: 'none', border: 'none', padding: 0 }}
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? (
-                    // Eye-off icon
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-4.477-10-10 0-1.657.403-3.22 1.125-4.575M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.364-2.364A9.956 9.956 0 0021.9 12c0 5.523-4.477 10-10 10a9.956 9.956 0 01-4.364-.964M3 3l18 18" />
-                    </svg>
-                  ) : (
-                    // Eye icon
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.364-2.364A9.956 9.956 0 0021.9 12c0 5.523-4.477 10-10 10a9.956 9.956 0 01-4.364-.964" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-// State for password visibility
-  const [showPassword, setShowPassword] = useState(false);
+              <Input
+                label="Password"
+                type="password"
+                placeholder="Enter your password"
+                error={errors.password?.message}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters'
+                  }
+                })}
+              />
 
 
 
