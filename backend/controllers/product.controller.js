@@ -81,8 +81,17 @@ const getallproducts=asynchnadler(async(req,res)=>{
         if (featured !== undefined) {
             query.featured = String(featured).toLowerCase() === "true" || String(featured) === "1";
         }
+        // Only populate category if it is a valid ObjectId
         const products = await Product.find(query)
-            .populate({ path: "category", select: "name" })
+            .populate({
+                path: "category",
+                select: "name",
+                match: (doc) => {
+                    // If category is not a valid ObjectId, skip population
+                    if (!doc.category || typeof doc.category !== 'object' || !doc.category._id) return null;
+                    return {};
+                }
+            })
             .populate({ path: "reviews", select: "rating title comment createdby createdon" })
             .skip(skip)
             .limit(limit)
@@ -90,6 +99,11 @@ const getallproducts=asynchnadler(async(req,res)=>{
         let normalized = products.map(toFrontendProduct);
         return res.status(200).json(new apiresponse(200, normalized, "Products fetched successfully"));
     } catch (err) {
+        // If error is a CastError (invalid ObjectId), return empty array instead of 500
+        if (err && err.name === 'CastError') {
+            console.error("getallproducts CastError (invalid ObjectId in category):", err);
+            return res.status(200).json(new apiresponse(200, [], "Products fetched successfully (invalid category data skipped)"));
+        }
         console.error("getallproducts error:", err);
         throw err;
     }
