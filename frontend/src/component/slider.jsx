@@ -17,7 +17,7 @@ import './slider.css'
 import slide1 from "../assets/slide1.png";
 import slide2 from "../assets/slide 2.png";
 import slide3 from "../assets/slide3.png";
-import slide4 from "../assets/s4";
+import slide4 from "../assets/s4.jpg";
 import slide5 from "../assets/slide 5.avif";
 import slide6 from "../assets/slide 6.webp";
 
