@@ -67,7 +67,7 @@ const Admin = () => {
   }
 
   const openEditProduct = (product) => {
-    setEditingProductId(product.id)
+    setEditingProductId(product._id || product.id)
     setProductFormError('')
     setProductFormValues({
       name: product.name ?? '',
@@ -87,7 +87,7 @@ const Admin = () => {
       // NEW: Delete in backend.
       const res = await fetch(`${API_BASE}/api/v1/products/deleteproduct/${id}`, { method: 'DELETE', credentials: 'include' })
       if (!res.ok) throw new Error('Failed to delete product')
-      setProducts((prev) => prev.filter((p) => String(p.id) !== String(id)))
+      setProducts((prev) => prev.filter((p) => String(p._id || p.id) !== String(id)))
     } catch (err) {
       console.error(err)
       alert(err.message || 'Failed to delete product')
@@ -139,7 +139,7 @@ const Admin = () => {
         if (!res.ok) throw new Error('Failed to update product')
         const json = await res.json()
         const updated = unwrapApiResponse(json)
-        setProducts((prev) => prev.map((p) => (String(p.id) === String(updated.id) ? updated : p)))
+        setProducts((prev) => prev.map((p) => (String(p._id || p.id) === String(updated._id || updated.id) ? updated : p)))
       } else {
         const payload = {
           ...basePayload,
