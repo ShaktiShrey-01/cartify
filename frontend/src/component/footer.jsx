@@ -29,7 +29,7 @@ const Footer = () => {
         {/* Social Links: Stays centered */}
         <div className="flex items-center justify-center gap-2 md:gap-3 md:order-2 md:flex-1 md:-translate-x-10">
           <a
-            href="https://github.com/"
+            href="https://github.com/ShaktiShrey-01"
             target="_blank"
             rel="noreferrer"
             className="w-7 h-7 md:w-10 md:h-10 flex items-center justify-center rounded-full border border-black text-black bg-transparent hover:bg-[#4169e1] hover:border-[#4169e1] hover:text-white transition-all duration-300 hover:scale-110"

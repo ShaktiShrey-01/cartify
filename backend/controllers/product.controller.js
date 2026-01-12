@@ -83,11 +83,11 @@ const getallproducts=asynchnadler(async(req,res)=>{
         }
         // Only populate category if it is a valid ObjectId
         const products = await Product.find(query)
+            .select('name price image featured type categoryKey rating')
             .populate({
                 path: "category",
                 select: "name",
                 match: (doc) => {
-                    // If category is not a valid ObjectId, skip population
                     if (!doc.category || typeof doc.category !== 'object' || !doc.category._id) return null;
                     return {};
                 }
