@@ -35,14 +35,14 @@ const Input = React.forwardRef(function Input({ label, type = 'text', placeholde
                     onClick={() => setShowPassword((prev) => !prev)}
                 >
                     {showPassword ? (
-                        // Eye-off icon
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-4.477-10-10 0-1.657.403-3.22 1.125-4.575M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.364-2.364A9.956 9.956 0 0021.9 12c0 5.523-4.477 10-10 10a9.956 9.956 0 01-4.364-.964M3 3l18 18" />
+                        // Eye-off icon (closed eye)
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12.001C3.226 16.273 7.24 19.5 12 19.5c1.772 0 3.437-.374 4.899-1.04m3.121-2.14A10.45 10.45 0 0022.066 12c-1.292-4.273-5.306-7.5-10.066-7.5-1.257 0-2.462.184-3.588.523M15 12a3 3 0 11-6 0 3 3 0 016 0zm-6.364 6.364l12-12" />
                         </svg>
                     ) : (
-                        // Eye icon
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm6.364-2.364A9.956 9.956 0 0021.9 12c0 5.523-4.477 10-10 10a9.956 9.956 0 01-4.364-.964" />
+                        // Eye icon (open eye)
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12c0-1.25.25-2.45.7-3.54C4.77 5.23 8.13 2.25 12 2.25s7.23 2.98 9.05 6.21c.45 1.09.7 2.29.7 3.54s-.25 2.45-.7 3.54C19.23 18.77 15.87 21.75 12 21.75s-7.23-2.98-9.05-6.21A10.45 10.45 0 012.25 12zm9.75 0a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     )}
                 </button>
