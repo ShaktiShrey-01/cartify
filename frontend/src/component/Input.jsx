@@ -25,7 +25,8 @@ const Input = React.forwardRef(function Input({ label, type = 'text', placeholde
                     } focus:outline-none focus:ring-2 transition-all duration-200 ${className} ${isPassword ? 'pr-12' : ''}`}
                     {...props}
                 />
-                {isPassword && (
+                {/* Only render one show/hide icon for password fields */}
+                {isPassword && !props.type && (
                     <button
                         type="button"
                         tabIndex={-1}
