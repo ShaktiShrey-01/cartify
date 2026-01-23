@@ -14,3 +14,16 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Environment & Artifacts
+
+- **Env files:** Configure frontend variables via [frontend/.env.example](frontend/.env.example). Copy to [frontend/.env](frontend/.env) locally and set `VITE_API_BASE` to your backend URL. `.env` is ignored, do not commit.
+- **Bundle stats:** Rollup Visualizer outputs like [frontend/stats.html](frontend/stats.html) are ignored by [.gitignore](../.gitignore) to avoid committing analysis artifacts.
+- **.npmrc:** [frontend/.npmrc](frontend/.npmrc) is optional. Remove it if you don't need custom npm settings. Never commit auth tokens.
+
+## Backend API base
+
+The app reads `VITE_API_BASE` in code (see [frontend/src/utils/api.js](frontend/src/utils/api.js)).
+
+- Local dev: leave `VITE_API_BASE` empty to use same-origin or a Vite proxy.
+- Production (Netlify): set `VITE_API_BASE` to your Render backend URL in Netlify environment settings.
