@@ -28,3 +28,7 @@ Thumbs.db
 
 # Temporary public files
 backend/public/temp/
+
+# Bundle analysis artifacts
+frontend/stats.html
+frontend/stats-*.html
